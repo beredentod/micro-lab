@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Micro Lab</title>
+<link rel="icon" href="./favicon.svg"><link rel="stylesheet" href="./vendor/katex/katex.min.css"><link rel="stylesheet" href="./styles.css">
+<script defer src="./vendor/katex/katex.min.js" onload="document.dispatchEvent(new Event('mathready'))"></script><script type="module" src="./app.js"></script>
+</head>
+<body><main>
+<header><img class="pse-logo" src="./pse-logo.svg" alt="Paris School of Economics"><h1>Micro Lab</h1><span>Ad valorem vs. equal-revenue budget tax</span><button type="button" id="reset">Reset</button></header>
+<div class="dashboard">
+<section class="main-graph" aria-labelledby="main-title">
+<div class="graph-head"><h2 id="main-title">Consumption and tax comparison</h2><label class="axis-toggle" title="Lock the current quantity ranges while the graph changes"><input id="lock-axes" type="checkbox" aria-label="Lock the main graph axis ranges" checked><span class="axis-switch" aria-hidden="true"></span><span id="axis-mode">Fixed scale</span></label></div><div id="vat-equation" class="equation"></div>
+<div class="plot-frame"><canvas id="vat-plot" role="img" aria-label="Consumption graph comparing ad valorem and equal-revenue budget taxes."></canvas><span class="axis-x" data-tex="x_1"></span><span class="axis-y" data-tex="x_2"></span></div>
+<div class="legend" aria-label="Graph legend"><span><i class="line vat"></i>Ad valorem budget</span><span><i class="line lump"></i>Equal-revenue income-tax budget</span><span><i class="line original"></i><i class="line compensated"></i>Original / compensated budgets</span><span><i class="line active-vat"></i><i class="line active-lump"></i>Chosen indifference curves</span><span><i class="swatch paired-area"></i>Affordable bundles</span></div>
+<div class="bundle" id="vat-bundle"></div>
+</section>
+<section class="analysis" aria-label="Utility and results">
+<div class="utility-graph"><h2>Utility across tax rates</h2><div class="plot-frame"><canvas id="utility-plot" role="img"></canvas><span class="axis-x" data-tex="t"></span><span class="axis-y" data-tex="u^*"></span></div><div class="legend"><span><i class="line vat"></i>Ad valorem</span><span><i class="line lump"></i>Budget tax</span></div><p class="small">Marker = selected rate. Same revenue at each rate.</p></div>
+<div class="summary" aria-live="polite"><h2>Results at selected tax</h2><dl><div class="revenue"><dt>Tax revenue · either tax</dt><dd id="revenue"></dd></div><div class="u-vat"><dt>Utility · ad valorem</dt><dd id="u-vat"></dd></div><div class="u-lump"><dt>Utility · budget tax</dt><dd id="u-lump"></dd></div><div class="gain"><dt>Utility difference · budget tax − ad valorem</dt><dd id="gain"></dd></div><div class="minor"><dt>Budget after income tax <span data-tex="m-R"></span></dt><dd id="net-income"></dd></div><div class="minor"><dt>Price incl. tax <span data-tex="p_1(1+t)"></span></dt><dd id="effective"></dd></div><div class="minor"><dt>Tax rate <span data-tex="t"></span></dt><dd id="selected-rate"></dd></div></dl>
+<div class="effects" id="vat-effects"></div>
+</div>
+</section>
+<aside aria-label="Model controls"><form id="parameters" novalidate>
+<fieldset><legend>Utility function</legend><div class="model-buttons" role="radiogroup" aria-label="Utility function"><label><input type="radio" name="model" value="cd" checked><span>Cobb–Douglas</span></label><label><input type="radio" name="model" value="ces"><span>General CES</span></label><label><input type="radio" name="model" value="leontief"><span>Leontief</span></label><label><input type="radio" name="model" value="substitutes"><span>Substitutes</span></label></div></fieldset>
+<div id="preferences" class="equation"></div>
+<div class="numbers"><label>Price <span data-tex="p_1"></span><input id="p1" type="number" min="0.01" max="1000000" step="any" value="2" required></label><label>Price <span data-tex="p_2"></span><input id="p2" type="number" min="0.01" max="1000000" step="any" value="3" required></label><label>Budget <span data-tex="m"></span><input id="income" type="number" min="0.01" max="1000000" step="any" value="120" required></label></div>
+<p id="input-error" role="alert" hidden>Enter values from 0.01 to 1,000,000.</p>
+<div class="slider"><label for="tax">Tax rate <span data-tex="t"></span> <output id="tax-value"></output></label><input id="tax" type="range" min="0" max="100" value="0"><div class="ends"><span data-tex="0\%"></span><span data-tex="100\%"></span></div></div>
+<div class="weights"><div class="slider"><label for="alpha">Weight <span data-tex="\alpha"></span> <output id="alpha-value"></output></label><input id="alpha" type="range" min="5" max="95" value="50"></div><div class="slider"><label for="beta">Weight <span data-tex="\beta"></span> <output id="beta-value"></output></label><input id="beta" type="range" min="5" max="95" value="50"></div></div><label class="lock"><input type="checkbox" id="weight-lock" checked> Lock <span data-tex="\alpha+\beta=1"></span> <output id="weight-sum" data-tex="\Sigma=1.00"></output></label>
+<div class="slider" id="sigma-control" hidden><label for="sigma">Elasticity <span data-tex="\sigma"></span> <output id="sigma-value"></output></label><input id="sigma" type="range" min="10" max="1000" value="100" step="5"></div>
+</form><p id="model-note" class="small"></p></aside>
+</div>
+<footer><span data-tex="A:\,\text{original},\quad H:\,\text{compensated},\quad V:\,\text{ad valorem},\quad L:\,\text{budget tax}"></span></footer>
+</main></body></html>

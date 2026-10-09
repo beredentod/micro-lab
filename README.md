@@ -5,6 +5,8 @@ An interactive dashboard for exploring consumer choice under two revenue-equival
 - an **ad valorem tax** on good 1; and
 - a **lump-sum reduction in income** equal to the revenue raised by that tax.
 
+Please visit: https://beredentod.github.io/micro-lab/
+
 Micro Lab shows both outcomes on a shared consumption graph and compares their utility consequences over tax rates from 0% to 100%. It is a static browser application built with HTML, CSS, and JavaScript. No account, API key, build process, or external service is required.
 
 ## Features
